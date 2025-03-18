@@ -24,5 +24,13 @@ Trick: volatile ensures visibility, but what about atomicity?
 Answer: volatile guarantees that changes to a variable are visible across threads, but it doesn’t ensure atomic operations. For example, i++ (read-modify-write) isn’t atomic, so multiple threads could still overwrite each other’s updates. You’d need synchronized or AtomicInteger for that.
 
 5. What’s the output of this code?
-java
 
+`public class Tricky {
+    public static void main(String[] args) {
+        Thread t = new Thread(() -> {
+            System.out.print("A");
+        });
+        t.run();
+        System.out.print("B");
+    }
+}`
